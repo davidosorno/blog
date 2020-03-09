@@ -1,0 +1,25 @@
+.btnCommand{
+    margin-left: 45%;
+}
+
+ul li{
+    list-style-type: none;
+}
+
+.errorMessage{
+    width: 70%;
+}
+
+@media only screen and (max-width: 400px)
+{   
+    .btnCommand{
+        margin-left: 5%;
+    }
+}
+
+@media only screen and (min-width: 1000px)
+{   
+    .btnCommand{
+        margin-left: 65%;
+    }
+}

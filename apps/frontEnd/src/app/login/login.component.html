@@ -1,0 +1,48 @@
+<div *ngIf="user.id == 0" id="container">
+    <div id="login">
+        <div id="loginContent">
+            <form (ngSubmit) = "onLogin()" method="POST"> 
+                <input type="text" id="userEmail" required [(ngModel)]="email" name="userEmail" placeholder="Email">
+                <p *ngIf="errors" class="errorMessage">{{ errors.login }}</p>
+                <button id="btnSendForm" type="submit">Login</button>
+                <a id="loginToggle" href="#" onclick="sldTogg('regForm')">Register</a>
+            </form>
+        </div>
+    </div>
+
+    <nav class="acceder">
+        <ul>
+            <li>
+                <div id="regForm">
+                    <form (ngSubmit) = "onSubmit()" method="POST"> 
+                        <h3>Register Form</h3>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label>First Name </label>
+                                </td>
+                                <td>
+                                    <input type="text" id="firstName" required [(ngModel)]="user.firstName" name="firstName">
+                                    <p *ngIf="errors" class="errorMessage">{{ errors.firstName }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Email</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="email" required [(ngModel)]="user.email" name="email">
+                                    <p *ngIf="errors" class="errorMessage">{{ errors.email }}</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <button id="btnSendForm" style="margin-top: -10px;" type="submit">Register</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div *ngIf="user.id != 0" id="home">
+    <app-home [user] = "user"></app-home>
+</div>

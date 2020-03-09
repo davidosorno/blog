@@ -1,0 +1,41 @@
+<div id="container">
+    <div id="messages">
+        <form *ngIf="!currentUser.superUser;" (ngSubmit) = "onSubmit()" method="POST"> 
+            <h3>Write a Post</h3>
+            <textarea name="txtPost" id="txtPost" required [(ngModel)]="post.message" style="width: 95%;" rows="10"></textarea>
+            <p *ngIf="errors" class="errorMessage">{{ errors.Post }}</p>
+            <br>
+            <button type="submit">Publish</button>
+        </form>
+    </div>
+    <div *ngFor="let post of postList" id="divPosts" name="divPosts">
+        <nav class="postlst">
+            <ul>
+                <li>
+                    <a href="##" [ngClass]="{errorMessage: post.spam}" (click)="callSldTogg(post.id)"> {{ post.message | slice:0:50 }}...</a>
+                    <label style="margin-right: 10px;">Published by {{ post.userPostsFK.firstName }} {{ post.userPostsFK.email }} on {{ post.createdAt|date:"MMM dd y HH:mm" }}</label>
+                    <br>
+                    <div *ngIf="!currentUser.superUser; else superUserBlock">
+                        <a *ngIf="currentUser.id == post.userPostsFK.id; else elseBlock" id="deleteLink" name="deleteLink" (click)="deletePost(post.id)"><button>Delete</button></a>
+                        <ng-template #elseBlock><a (click)="reportSpam(post.id)"><button class="spam" style="width: 150px;">Report as Spam</button></a></ng-template>
+                    </div>
+                    <ng-template #superUserBlock>
+                        <a id="deleteLink" name="deleteLink" (click)="deletePost(post.id)"><button>Delete</button></a>
+                    </ng-template>
+
+                    <div id="postComments{{post.id}}" class="posts">
+                        <p [ngClass]="{errorMessage: post.spam}">{{ post.message }}</p>
+                        <app-comment 
+                            [currentUser] = "currentUser" 
+                            [commentList] = "post.commentsPostFK"
+                            [postId] = "post.id"
+                        >
+
+                        </app-comment>
+                    </div>
+                </li>
+                <hr>
+            </ul>
+        </nav>
+    </div>
+</div>

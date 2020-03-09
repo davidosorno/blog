@@ -1,0 +1,76 @@
+*{
+    margin: 0px;
+    padding: 5px;
+}
+
+#container{
+    width: 100%;
+}
+
+#regForm{
+    width: 400px;
+    border: 2px solid black;
+    background:linear-gradient(30deg, 
+        rgba(255, 255, 255, 0),
+        rgba(0, 0, 255, 0.300)); 
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 3px;
+    top: 15px;
+    padding: 10px;
+}
+
+#regForm table {
+    border-spacing: 10px;
+}
+
+#loginContent{
+    display: inline-block;
+    vertical-align: top;
+    top: 15px;
+    background:linear-gradient(30deg, 
+        rgba(255, 255, 255, 0),
+        rgba(0, 0, 255, 0.300)); 
+    padding: 15px;
+    width: 250px;
+    border-radius: 0px 10px 10px 10px;
+    border: 2px solid black;
+    height: 150px;
+
+}
+
+/* Shade fields */
+input{
+    background-color: #f1f1f1;
+    padding: 6px 5px;
+    margin-bottom: 10px;
+    width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#regForm input{
+    background-color: #ffffff;
+    margin-top: 5px;
+}
+
+button{
+    margin-top: 20px;
+}
+
+a{
+    margin: 20px;
+}
+
+ul{
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+}
+
+nav, #login{
+    display: inline-block;
+    vertical-align: top;
+}

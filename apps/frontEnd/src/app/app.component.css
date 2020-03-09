@@ -1,0 +1,9 @@
+#imgLogo{
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    display: inline-block;
+    vertical-align: top;
+    position: fixed;
+    right: 40px;
+}

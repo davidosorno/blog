@@ -1,0 +1,12 @@
+*{
+    margin: 0px;
+    padding: 5px;
+}
+
+ul li{
+    list-style-type: none;
+}
+
+.errorMessage{
+    width: 70%;
+}

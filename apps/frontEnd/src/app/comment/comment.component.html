@@ -1,0 +1,31 @@
+<div id="container">
+    <div id="comments">
+        <form *ngIf="!currentUser.superUser;" (ngSubmit) = "onSubmit()" method="POST"> 
+            <p>Write a comment</p>
+            <textarea name="txtComment" id="txtComment" required [(ngModel)]="comment.comment" style="width: 95%;" rows="3"></textarea>
+            <p *ngIf="errors" class="errorMessage">{{ errors.Comment }}</p>
+            <br>
+            <button class="btnCommand" type="submit" style="width: 150px;">Send Comment</button>
+        </form>
+    </div>
+    <div *ngFor="let comment of commentList" id="divComments" name="divComments">
+        <br><br>
+        <nav class="commentList">
+            <ul>
+                <li>
+                    <label style="margin-right: 10px;" [ngClass]="{errorMessage: comment.spam}">Commented by {{ comment.userCommentFK.firstName }} {{ comment.userCommentFK.email }} on {{ comment.createdAt|date:"MMM dd y HH:mm" }}</label>
+                    <div id="comments" [ngClass]="{errorMessage: comment.spam}">
+                        <p >{{ comment.comment }}</p>
+                    </div>
+                    <div *ngIf="!currentUser.superUser; else superBlock">
+                        <a href="##" *ngIf="currentUser.id == comment.userCommentFK.id; else elseBlock" id="deleteLink" name="deleteLink" (click)="deleteComment(comment.id)">Remove</a>
+                        <ng-template #elseBlock><a href="##" (click)="reportSpam(comment.id)" class="spam">Spam</a></ng-template>
+                    </div>
+                    <ng-template #superBlock>
+                        <a href="##" id="deleteLink" name="deleteLink" (click)="deleteComment(comment.id)">Remove</a>
+                    </ng-template>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

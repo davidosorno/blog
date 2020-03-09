@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+button{
+    border-radius: 5px;
+    height: 34px;
+    width: 90px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.errorMessage{
+    margin-top: -10px;
+    margin-bottom: -5px;
+    width: 350px;
+    color: red;
+    font-size: 12px;
+}
+
+.spam{
+    color: red;
+}
+
+.spam:hover{
+    box-shadow: 
+        0 0px 0px 0 rgba(0, 0, 0, 0.24), 
+        0 5px 5px 1px rgba(0, 0, 0, 0.19);
+}
