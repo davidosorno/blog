@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% load static %}
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+
+        <style>
+            .errorMessage{
+                margin: 0px 0px;
+                width: 350px;
+                color: red;
+                font-size: 11px;
+            }
+            #top a{
+                top: 5px;
+                left: 92%;
+                position: absolute;
+            }
+        </style>
+        
+        <title>Welcome To The Blog</title>
+    </head>
+    <body id="bodyShow">
+        <div id="container">
+            <div id="top">
+                <h2>The Blog</h2>
+                <h4>Welcome, {{ request.session.firstName }}</h4>
+                <h3>{{ request.session.email }}</h3>
+                <a href="/logOut"><button class="btn-warning">Log Out</button></a>
+            </div>
+            <hr>
+            <div id="messages">
+                <form action="/post/new" name="postForm" id="postForm" method="POST">
+                    {% csrf_token %}
+                    <p style="width: 250px;">Post Message</p>
+                    {% for key in messages %}
+                        {% if key.tags == "message error" %}
+                            <br>
+                            <p style="width: 350px; position: relative; top: -10px;" class="errorMessage" id="postError"> {{ key }} </p>
+                        {% endif %}
+                    {% endfor %}
+                    <textarea name="txtMessage" id="txtMessage" cols="160" rows="10"></textarea>
+                    <button id="sendMessage" class="btn-warning sendMessage">Send Post</button>
+                    <br><br><br>
+                </form>
+            </div>
+            {% for post in posts %}
+                <div id="divPosts">
+                    <nav class="acceder">
+                        <ul>
+                            <li>
+                                {% if posts.userPostsFK.id == request.session.id %}
+                                    <a href="/message/delete/{{posts.id}}"><button name="{{posts.id}}">Delete Post</button></a>
+                                {% endif %}
+                                <a href="#" style="margin: 0px 20px;">{{ posts.userPostsFK.firstName }} {{ posts.userPostsFK.email }}</a> 
+                                <span class="errorMessage"> {{ posts.created_at }}</span>
+                                <p class="messageText">{{ posts.message }}</p>
+                                <div id="loginContent{{posts.id}}" class="posts">
+                                    <form id="regFormMessage{{posts.id}}" action="post/comment/new" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="idMessage" value="{{posts.id}}">
+                                        <textarea name="txtComment" style="margin: 0px 40px;" id="txtComment" cols="160" rows="10"></textarea>
+                                        <button class="btn-warning" style="width:160px; margin: 0px 0px 20px 40px">Send Comment</button>
+                                        {% for comm in posts.commentsPostFK.all %}
+                                            <p class="pComment" style="margin: 0px 40px;"> 
+                                                {{ comm.userCommentFK.firstName }} {{ comm.userCommentFK.lastName }} 
+                                                <span class="errorMessage">{{ comm.created_at|date:'Y-m-d H:i' }}</span>
+                                            </p>
+                                            <p class="pComment"> {{ comm.comment }} </p>
+                                            <hr>
+                                        {% endfor %}
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </body>
+</html>

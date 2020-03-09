@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .errorMessage{
+                margin: 0px 0px;
+                width: 350px;
+                color: red;
+                font-size: 11px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="regForm">
+                <form name="regFormUser" id="regFormUser" action="/user/new" method="POST"> 
+                    {% csrf_token %}
+                    <h3>Register Form</h3>
+                    
+                    <p class="errorMessage" id="firstNameError">
+                        {% for key in messages %}
+                            {% if key.tags == "firstName error" %}
+                                {{ key }}
+                            {% endif %}
+                        {% endfor %}
+                    </P>
+                    <p>First Name </p>
+                    <input type="text" id="firstName" name="firstName" value="">
+                    
+                    <p class="errorMessage" id="emailError">
+                        {% for key in messages %}
+                            {% if key.tags == "email error" %}
+                                {{ key }}
+                            {% endif %}
+                        {% endfor %}
+                    </p>        
+                    <p>Email</p>
+                    <input type="text" id="email" name="email" value="">
+                    <!-- <button id="btnSendForm" type="submit" onclick="validateForm()">Submit</button> -->
+                    <!-- We can create validations with a JS file to validate everything before send the form, then, we validate everything again on Back-Eend  -->
+                    <!-- For this example I just used Back-End Validations (The most important) -->
+                    <button id="btnSendForm" type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div id="sign-in">
+                <form name="signInForm" id="signInForm" action="/user/login" method="POST"> 
+                    {% csrf_token %}
+                    <h3>Sign In</h3>
+                    
+                    <p class="errorMessage" id="emailError">
+                        {% for key in messages %}
+                            {% if key.tags == "login error" %}
+                                {{ key }}
+                            {% endif %}
+                        {% endfor %}
+                    </p>        
+                    <p>Email</p>
+                    <input type="text" id="email" name="email" value="">
+                    <button id="btnSendForm" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
