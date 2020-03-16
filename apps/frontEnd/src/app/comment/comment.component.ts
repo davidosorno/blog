@@ -62,7 +62,7 @@ export class CommentComponent implements OnInit {
 					console.log("This is an Error #8003 ", data);
 				}else{
 					this.commentList = data["comments"];
-					console.log(this.commentList);
+					// console.log(this.commentList);
 				}
 			},
 			error => {

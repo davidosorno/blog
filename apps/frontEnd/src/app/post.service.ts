@@ -11,7 +11,8 @@ import { User } from 'src/assets/models/User';
 })
 export class PostService {
 
-	baseUrl = 'http://127.0.0.1:8000/';
+	// baseUrl = 'http://127.0.0.1:8000/';
+	baseUrl = 'http://3.12.132.128:8000/';
 
 	constructor(private _http: HttpClient) { }
 

@@ -5,6 +5,7 @@ $(document).ready(function(){
 function sldTogg(control){
     getControl = document.getElementById(control);
     $(getControl).slideToggle("slow");
+    event.preventDefault(); // cancel the event
 }
 
 function deleteMessage()

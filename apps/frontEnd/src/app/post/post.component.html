@@ -12,7 +12,7 @@
         <nav class="postlst">
             <ul>
                 <li>
-                    <a href="##" [ngClass]="{errorMessage: post.spam}" (click)="callSldTogg(post.id)"> {{ post.message | slice:0:50 }}...</a>
+                    <a href="##" [ngClass]="{errorMessage: post.spam}" (click)="callSldTogg(post.id, $event)"> {{ post.message | slice:0:50 }}...</a>
                     <label style="margin-right: 10px;">Published by {{ post.userPostsFK.firstName }} {{ post.userPostsFK.email }} on {{ post.createdAt|date:"MMM dd y HH:mm" }}</label>
                     <br>
                     <div *ngIf="!currentUser.superUser; else superUserBlock">

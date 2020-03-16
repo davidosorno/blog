@@ -11,7 +11,9 @@ import { User } from '../assets/models/User';
 
 export class UserService {
 
-	baseUrl = 'http://127.0.0.1:8000/';
+	baseUrl = 'http://localhost:8000/';
+	// baseUrl = 'http://3.12.132.128:8000/';
+	// baseUrl = '/';
 
 	constructor(private _http: HttpClient) { }
 
@@ -34,3 +36,4 @@ export class UserService {
 		return this._http.get(this.baseUrl + "user/logout")
 	}
 }
+

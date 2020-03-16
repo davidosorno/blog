@@ -15,7 +15,7 @@ import { User } from '../../assets/models/User';
 export class LoginComponent implements OnInit {
 
 	user: User = new User();
-	email: string;
+	email = "";
 	errors: any;
 
 	constructor(
@@ -55,7 +55,9 @@ export class LoginComponent implements OnInit {
 	}
 
 	onLogin(){
-		this.loginUser(this.email.trim());
+		if(this.email.length > 0){
+			this.loginUser(this.email.trim());
+		}
 	}
 
 	loginUser(userEmail){
@@ -74,9 +76,6 @@ export class LoginComponent implements OnInit {
 			},
 			err => {
 				console.log("Something went wrong #2002.", err);
-			},
-			() => {
-				console.log("*************ERROR");
 			}
 		);
 	}

@@ -45,7 +45,7 @@ export class PostComponent implements OnInit {
 					console.log("This is an Error #7003 ", data);
 				}else{
 					this.postList = data["posts"];
-					console.log(this.postList);
+					// console.log(this.postList);
 				}
 			},
 			error => {
@@ -123,15 +123,18 @@ export class PostComponent implements OnInit {
 		}
 	}
 
-	callSldTogg(postId){
-		sldTogg(postId);
+	callSldTogg(postId, event: Event){
+		sldTogg(postId, event);
 	}
 }
 
 // ************ JQUERY FUNCTION ************ 
-function sldTogg(control){
+function sldTogg(control, event = null){
 	let getControl = document.getElementById("postComments"+control);
 	$(getControl).slideToggle("slow");
+	if(event){
+		event.preventDefault();
+	}
 }
 
 function hideAll(){	

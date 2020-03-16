@@ -3,13 +3,6 @@
     padding: 5px;
 }
 
-.errorMessage{
-    margin-bottom: -5px;
-    width: 350px;
-    color: red;
-    font-size: 12px;
-}
-
 #welcome, #menu{
     display: inline-block;
     vertical-align: top;
@@ -18,21 +11,38 @@
 
 .navbar{
     background-color: rgba(0, 26, 172, 0.156);
-
 }
 
 #menu{
-    width: 750px;
+    width: 50%;
     position: relative;
-    margin-left: 5%;
 }
 
-@media only screen and (max-width: 1000px)
+@media only screen and (max-width: 480px)
 {   
     #navBar{
         width: 250px;
     }
     #menu{
         margin: 30px 0;
+        width: 260px;
+    }
+}
+
+@media only screen and (min-width: 481px)
+{   
+    #navBar{
+        width: 100%;
+    }
+    #menu{
+        margin: 30px 0;
+    }
+}
+
+@media only screen and (min-width: 985px)
+{   
+    #menu{
+        width: 730px;
+        margin-top: -40px;
     }
 }
